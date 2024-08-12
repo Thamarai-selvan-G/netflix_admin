@@ -1,0 +1,145 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .parentSpacing {
+    width: 90%;
+    height: 100vh;
+    margin: 0 auto;
+  }
+  
+  .backHome {
+    text-align: left;
+    margin: 20px;
+    
+  }
+  
+  .backHome a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .backHome a:hover {
+    color: #0056b3;
+  }
+  
+  .tableParent {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+    text-align: center;
+  }
+  
+  thead {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  
+  thead th {
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    border-right: 1px solid #dee2e6;
+  }
+  
+  thead th:last-child {
+    border-right: none;
+  }
+  
+  tbody tr {
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.3s ease;
+  }
+  
+  tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  tbody td {
+    padding: 12px;
+    border-right: 1px solid #dee2e6;
+    vertical-align: middle;
+  }
+  
+  tbody td:last-child {
+    border-right: none;
+    text-align: center;
+  }
+  
+  img {
+    max-width: 100px;
+    max-height: 60px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+  }
+  
+  button {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+      width: 100%;
+    }
+  
+    thead {
+      display: none;
+    }
+  
+    tr {
+      margin-bottom: 15px;
+      border-bottom: 2px solid #dee2e6;
+    }
+  
+    td {
+      border-right: none;
+      border-bottom: 1px solid #dee2e6;
+      position: relative;
+      padding-left: 50%;
+    }
+  
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: calc(50% - 20px);
+      padding-right: 10px;
+      font-weight: bold;
+      text-align: left;
+      color: #495057;
+    }
+  
+    td:last-child {
+      text-align: right;
+      padding-left: 0;
+    }
+  }
+  

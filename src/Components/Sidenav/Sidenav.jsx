@@ -15,11 +15,9 @@ function Sidenav() {
             </div>
             <div className="Tittle">
               <div className="lists">
-              <Link className='linktag' to={"/Home"}> <p className='tag'> <GoDot/> Home</p> </Link>
-              <Link className='linktag' to={"/TVShows"}> <p className='tag'> <GoDot/> TV Shows</p> </Link>
-              <Link className='linktag' to={"/Movie"}> <p className='tag'> <GoDot/> Movies</p> </Link>
-              <Link className='linktag' to={"/NewAndPopular"}> <p className='tag'> <GoDot/> New & Popular</p> </Link>
-              </div>
+              <Link className='linktag' to={"/home"}> <p className='tag'> <GoDot/> Home</p> </Link>
+              <Link className='linktag' to={"/update"}> <p className='tag'> <GoDot/> Update </p> </Link>
+              <Link className='linktag' to={"/viewAll"}> <p className='tag'> <GoDot/> All datas'</p> </Link>              </div>
             </div>
         </div>
     </div>

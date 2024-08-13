@@ -5,12 +5,13 @@ import { GrUpload } from "react-icons/gr";
 import axios from "axios";
 
 const Home = () => {
+  const [first, setfirst] = useState(null);
   const [data, setData] = useState({
     movieName: "",
     relesedYear: "",
     genre: "",
     censor: "",
-    thumpNile: "",
+    thumpNile: null,
     movieVideo: "",
     about: "",
     rating: "",
@@ -21,6 +22,9 @@ const Home = () => {
     let myValue = e.target.value;
 
     setData({ ...data, [myName]: myValue });
+    let images1 = URL.createObjectURL(data.thumpNile);
+    // console.log(images1);
+    setfirst(images1);
   }
 
   const storeData = async () => {
@@ -29,21 +33,29 @@ const Home = () => {
       relesedYear: data.relesedYear,
       genre: data.genre,
       censor: data.censor,
-      thumpNile: data.thumpNile,
+      thumpNile: first,
       about: data.about,
       rating: data.rating,
     };
 
-    let result = await axios.post("http://localhost:4000/movie/moviecreate",movieData)
-      console.log(result);
-      if (!result) {
-        console.log("api error");
-      }
-      return console.log('Data uploaded sucesfull....');
-  
-
+    let result = await axios.post(
+      "http://localhost:4000/movie/moviecreate",
+      movieData
+    );
+    console.log(result);
+    if (!result) {
+      console.log("api error");
+    }
+    return console.log("Data uploaded sucesfull....");
   };
-
+  function getData1(e) {
+    let datas = e.target.files[0];
+    console.log(datas);
+    setData({ ...data, thumpNile: datas });
+    let images = URL.createObjectURL(datas);
+    console.log(images);
+    setfirst(images);
+  }
   return (
     <div>
       <div className="wholeParent">
@@ -88,11 +100,12 @@ const Home = () => {
                   </div>
                   <div className="flexDiv">
                     <h4>Movie Thumbnail</h4>
+                    <img src={first} alt="" />
                     <input
                       id="fileArea"
                       type="file"
                       name="thumpNile"
-                      onChange={getData}
+                      onChange={getData1}
                     />
                   </div>
                 </div>

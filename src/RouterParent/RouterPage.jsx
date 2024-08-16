@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Mylogin from "../Layout/Mylogin";
 import Home from "../Layout/Home";
 import ViewAll from "../Layout/ViewAll";
+import Update from "../Layout/Update";
 
 function RouterPage() {
   return (
@@ -13,7 +14,7 @@ function RouterPage() {
           <Route path="/" element={<Mylogin />} />
           <Route path="/home" element={<Home />} />
           <Route path="/viewAll" element={<ViewAll/>} />
-          {/* <Route path = "update" element = {}/> */}
+          <Route path = "/update" element = {<Update/>}/>
        
         </Routes>
       </Router>

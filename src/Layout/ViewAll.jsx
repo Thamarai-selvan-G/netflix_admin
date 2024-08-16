@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import "./ViewAll.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { myReducer } from "../Store/Store";
 
 const ViewAll = () => {
+  
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
   const [data, setData] = useState([]);
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     const moviApi = async () => {
@@ -24,7 +29,20 @@ const ViewAll = () => {
     };
     moviApi();
   }, []);
-  data.map((img) => console.log(img.thumpNile));
+  // data.map((img) => console.log(img.thumpNile));
+  
+  let getInfo= async (e)=>{
+        // let data = e.target.id
+        // dispatch(myReducer.updateDataId(data))
+        
+        // console.log(data);
+        // console.log(dispatch);
+        let slectedData = data.filter((val)=>e===val.id)
+         await dispatch(myReducer.updateDataId(slectedData))
+         console.log(slectedData);
+         
+           navigate('/update')
+      }
   return (
     <>
       <div class="parentSpacing">
@@ -64,7 +82,7 @@ const ViewAll = () => {
                   <td>{value.relesedYear}</td>
                   <td>{value.about}</td>
                   <td>
-                    <button>Edit</button>
+                    <button onClick={()=>getInfo(value.id)}>Edit</button>
                   </td>
                 </tr>
               ))}

@@ -1,64 +1,24 @@
-import React, { useState } from "react";
-import Sidenav from "../Components/Sidenav/Sidenav";
 import "./Home.css";
+import Sidenav from "../Components/Sidenav/Sidenav";
 import { GrUpload } from "react-icons/gr";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect,useState } from "react";
 
-const Home = () => {
-  const [first, setfirst] = useState(null);
-  const [data, setData] = useState({
-    movieName: "",
-    relesedYear: "",
-    genre: "",
-    censor: "",
-    thumpNile: null,
-    movieVideo: "",
-    about: "",
-    rating: "",
-  });
 
-  function getData(e) {
-    let myName = e.target.name;
-    let myValue = e.target.value;
+const Update = () => {
+  const [data, setData] = useState([]); 
+  const slectedArry = useSelector((state) => state.updateData);
 
-    setData({ ...data, [myName]: myValue });
-    let images1 = URL.createObjectURL(data.thumpNile);
-    // console.log(images1);
-    setfirst(images1);
-  }
-  
-  function getData1(e) {
-    let datas = e.target.files[0];
-    // console.log(datas);
-    setData({ ...data, thumpNile: datas });
-    let images = URL.createObjectURL(datas);
-    // console.log(images);
-    setfirst(images);
-  }
-  const storeData = async () => {
-    let movieData = {
-      movieName: data.movieName,
-      relesedYear: data.relesedYear,
-      genre: data.genre,
-      censor: data.censor,
-      thumpNile: first,
-      about: data.about,
-      rating: data.rating,
-    };
 
-    let result = await axios.post(
-      "http://localhost:4000/movie/moviecreate",
-      movieData
-    );
-    console.log(result);
-    if (!result) {
-      console.log("api error");
+  useEffect(() => {
+    if (slectedArry) {
+      setData(slectedArry);
     }
-    return console.log("Data uploaded sucesfull....");
-  };
+  }, [slectedArry]);
   return (
     <div>
-      <div className="wholeParent">
+     { data && data.map((val)=>{
+      return (<div className="wholeParent" >
         <div className="nav">
           <Sidenav />
           <div className="contentParent">
@@ -74,7 +34,8 @@ const Home = () => {
                   type="text"
                   name="movieName"
                   placeholder="Name"
-                  onChange={getData}
+                  value={val.movieName }
+                  // onChange={getData} //
                 />
               </div>
 
@@ -84,9 +45,10 @@ const Home = () => {
                     <h4>Movie Released Year</h4>
                     <input
                       type="number"
-                      name="relesedYear"
+                      name="releasedYear"
                       id="nameFiled"
-                      onChange={getData}
+                      value={val.relesedYear }
+                      // onChange={getData} //
                     />
                   </div>
                   <div className="flexDiv">
@@ -95,7 +57,8 @@ const Home = () => {
                       type="text"
                       id="nameFiled"
                       name="censor"
-                      onChange={getData}
+                      value={val.censor}
+                      // onChange={getData} //
                     />
                   </div>
                   <div className="flexDiv">
@@ -103,16 +66,16 @@ const Home = () => {
                     <input
                       id="fileArea"
                       type="file"
-                      name="thumpNile"
-                      onChange={getData1}
+                      name="thumbnail"
+                      // value={val.thumpNile}
+                      // onChange={getData} // 
                     />
-                    <img src={first} alt="" />
                   </div>
                 </div>
                 <div className="centerDiv2">
                   <div className="flexDiv">
                     <h4>Movie Genre</h4>
-                    <select id="nameFiled" name="genre" onChange={getData}>
+                    <select id="nameFiled" name="genre" value={val.genre }>
                       <option value="">Select Genre</option>
                       <option value="Action">Action</option>
                       <option value="Romance">Romance</option>
@@ -126,7 +89,8 @@ const Home = () => {
                       type="text"
                       id="nameFiled"
                       name="rating"
-                      onChange={getData}
+                      value={val.rating}
+                      // onChange={getData} /
                     />
                   </div>
                   <div className="flexDiv">
@@ -135,7 +99,8 @@ const Home = () => {
                       type="file"
                       id="fileArea"
                       name="movieVideo"
-                      onChange={getData}
+                      // value={val.movieVideo}
+                      // onChange={getData} // 
                     />
                   </div>
                 </div>
@@ -146,11 +111,13 @@ const Home = () => {
                   <textarea
                     className="plotArea"
                     name="about"
-                    onChange={getData}
-                    placeholder="Brief the movie story"></textarea>
+                    placeholder="Brief the movie story"
+                    value={val.about }
+                    // onChange={getData} // 
+                  ></textarea>
                 </div>
                 <div className="addDiv">
-                  <button type="submit" onClick={storeData}>
+                  <button type="submit">
                     Add Product <GrUpload />
                   </button>
                 </div>
@@ -158,9 +125,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>)
+     })}
     </div>
   );
 };
 
-export default Home;
+export default Update;

@@ -26,13 +26,14 @@ const Mylogin = () => {
       };
       console.log(data);
 
-      let result = await axios.post("http://localhost:4000/admin/login", data);
-      console.log(result);
-
-      if (!result) {
-        console.log("api error.....");
-      }
-      return navigate("/home");
+       await axios.post("http://localhost:4000/admin/login", data)
+     
+      .then((res)=>{
+          console.log(res);
+          return navigate('/home')
+      })
+      .catch((err)=>console.log(err.message))
+      
     } catch (error) {
       console.log(error.message);
     }

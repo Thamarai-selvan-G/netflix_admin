@@ -6,15 +6,34 @@ import { useEffect,useState } from "react";
 
 
 const Update = () => {
-  const [data, setData] = useState([]); 
+  const [data, setData] = useState([]);
+  // const [update,setUpdate]= useState({})
   const slectedArry = useSelector((state) => state.updateData);
-
 
   useEffect(() => {
     if (slectedArry) {
       setData(slectedArry);
     }
   }, [slectedArry]);
+
+  function getData(e) {
+    const {name,value} = e.target;
+    setData({...data,[name]:value})
+  }
+ console.log(getData);
+ console.log(data);
+ 
+ 
+  let updateMovie = async()=>{
+    try {
+
+      
+      
+    } catch (error) {
+      console.log(error.message);
+      
+    }
+  }
   return (
     <div>
      { data && data.map((val)=>{
@@ -35,7 +54,7 @@ const Update = () => {
                   name="movieName"
                   placeholder="Name"
                   value={val.movieName }
-                  // onChange={getData} //
+                  onChange={getData} //
                 />
               </div>
 
@@ -48,7 +67,7 @@ const Update = () => {
                       name="releasedYear"
                       id="nameFiled"
                       value={val.relesedYear }
-                      // onChange={getData} //
+                      onChange={getData} //
                     />
                   </div>
                   <div className="flexDiv">
@@ -58,7 +77,7 @@ const Update = () => {
                       id="nameFiled"
                       name="censor"
                       value={val.censor}
-                      // onChange={getData} //
+                      onChange={getData} //
                     />
                   </div>
                   <div className="flexDiv">
@@ -68,8 +87,9 @@ const Update = () => {
                       type="file"
                       name="thumbnail"
                       // value={val.thumpNile}
-                      // onChange={getData} // 
+                      onChange={getData} // 
                     />
+                    <img src={val.thumpNile} alt={val.movieName} />
                   </div>
                 </div>
                 <div className="centerDiv2">
@@ -90,7 +110,7 @@ const Update = () => {
                       id="nameFiled"
                       name="rating"
                       value={val.rating}
-                      // onChange={getData} /
+                      onChange={getData} 
                     />
                   </div>
                   <div className="flexDiv">
@@ -100,7 +120,7 @@ const Update = () => {
                       id="fileArea"
                       name="movieVideo"
                       // value={val.movieVideo}
-                      // onChange={getData} // 
+                      onChange={getData} // 
                     />
                   </div>
                 </div>
@@ -113,11 +133,11 @@ const Update = () => {
                     name="about"
                     placeholder="Brief the movie story"
                     value={val.about }
-                    // onChange={getData} // 
+                    onChange={getData} // 
                   ></textarea>
                 </div>
                 <div className="addDiv">
-                  <button type="submit">
+                  <button type="submit" onClick={updateMovie}>
                     Add Product <GrUpload />
                   </button>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Mylogin.css";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Mylogin = () => {

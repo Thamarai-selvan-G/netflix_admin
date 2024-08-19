@@ -18,16 +18,17 @@ const Home = () => {
   });
 
   function getData(e) {
-    let myName = e.target.name;
-    let myValue = e.target.value;
-
-    setData({ ...data, [myName]: myValue });
-    let images1 = URL.createObjectURL(data.thumpNile);
-    // console.log(images1);
-    setfirst(images1);
+    const { name, value } = e.target;
+    setData(prevData => ({ ...prevData, [name]: value }));
+    
+    if (name === "thumpNile" && data.thumpNile) {
+      const imageUrl = URL.createObjectURL(data.thumpNile);
+      setfirst(imageUrl);
+    }
   }
   
   function getData1(e) {
+    
     let datas = e.target.files[0];
     // console.log(datas);
     setData({ ...data, thumpNile: datas });

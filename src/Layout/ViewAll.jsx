@@ -22,7 +22,7 @@ const ViewAll = () => {
           .then((data) => data.data)
           .then((result) => {
             return setData(result.message);
-          });
+          })
       } catch (error) {
         console.log(error.massage);
       }
@@ -32,11 +32,6 @@ const ViewAll = () => {
   // data.map((img) => console.log(img.thumpNile));
   
   let getInfo= async (e)=>{
-        // let data = e.target.id
-        // dispatch(myReducer.updateDataId(data))
-        
-        // console.log(data);
-        // console.log(dispatch);
         let slectedData = data.filter((val)=>e===val.id)
          await dispatch(myReducer.updateDataId(slectedData))
          console.log(slectedData);

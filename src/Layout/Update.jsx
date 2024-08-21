@@ -2,7 +2,7 @@ import "./Home.css";
 import Sidenav from "../Components/Sidenav/Sidenav";
 import { GrUpload } from "react-icons/gr";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Update = () => {
@@ -11,12 +11,10 @@ const Update = () => {
 
   useEffect(() => {
     if (slectedArry && slectedArry.length > 0) {
-      // Initialize the data state with the selected movie's data
       setData(slectedArry[0]);
     }
   }, [slectedArry]);
-// console.log(`redux arry ${slectedArry}`)
-// console.log(`redux arry index value ${slectedArry[0]}`)
+
   function getData(e) {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -27,7 +25,7 @@ const Update = () => {
       const { id, ...movieData } = data;
       await axios
         .post(`http://localhost:4000/movie/update/${id}`, movieData)
-        .then((res) => console.log(res))
+        .then((res) => console.log(res.message))
         .catch((err) => console.log(err.message));
     } catch (error) {
       console.log(error.message);
@@ -37,7 +35,7 @@ const Update = () => {
   return (
     <div>
       {slectedArry &&
-        slectedArry.map((val, index) => {
+        slectedArry.map((index) => {
           return (
             <div className="wholeParent" key={index}>
               <div className="nav">
@@ -68,7 +66,7 @@ const Update = () => {
                             type="number"
                             name="releasedYear"
                             id="nameFiled"
-                            value={data.releasedYear || ""}
+                            value={data.relesedYear || ""}
                             onChange={getData}
                           />
                         </div>

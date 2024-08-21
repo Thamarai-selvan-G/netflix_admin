@@ -29,12 +29,11 @@ const ViewAll = () => {
     };
     moviApi();
   }, []);
-  // data.map((img) => console.log(img.thumpNile));
   
   let getInfo= async (e)=>{
         let slectedData = data.filter((val)=>e===val.id)
-         await dispatch(myReducer.updateDataId(slectedData))
-         console.log(slectedData);
+        dispatch(myReducer.updateDataId(slectedData))
+        //  console.log(slectedData);
          
            navigate('/update')
       }

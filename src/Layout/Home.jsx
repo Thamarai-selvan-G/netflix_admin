@@ -48,7 +48,7 @@ const Home = () => {
     };
 
     let result = await axios.post(
-      "http://localhost:4000/movie/moviecreate",
+      "https://netflixbackend-dysz.onrender.com/movie/moviecreate",
       movieData
     );
     console.log(result);

@@ -18,7 +18,7 @@ const ViewAll = () => {
     const moviApi = async () => {
       try {
         await axios
-          .get("http://localhost:4000/movie/viewall")
+          .get("https://netflixbackend-dysz.onrender.com/movie/viewall")
           .then((data) => data.data)
           .then((result) => {
             return setData(result.message);

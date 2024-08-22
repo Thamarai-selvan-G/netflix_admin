@@ -17,7 +17,7 @@ const Mylogin = () => {
   }
 
   const loginProcess = async (e) => {
-    console.log("data fetching....");
+    // console.log("data fetching....");
     e.preventDefault()   
     try {
       let data = {
@@ -26,7 +26,7 @@ const Mylogin = () => {
       };
       console.log(data);
 
-       await axios.post("http://localhost:4000/admin/login", data)
+       await axios.post("https://netflixbackend-dysz.onrender.com/admin/login", data)
      
       .then((res)=>{
           console.log(res);

@@ -24,7 +24,7 @@ const Update = () => {
     try {
       const { id, ...movieData } = data;
       await axios
-        .post(`http://localhost:4000/movie/update/${id}`, movieData)
+        .post(`https://netflixbackend-dysz.onrender.com/movie/update/${id}`, movieData)
         .then((res) => console.log(res.message))
         .catch((err) => console.log(err.message));
     } catch (error) {

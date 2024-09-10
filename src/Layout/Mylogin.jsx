@@ -32,6 +32,7 @@ const Mylogin = () => {
         navigate("/home");
       } else {
         console.log(result.data.message);
+        alert("Incorrect Password")
       }
     } catch (err) {
       console.log("incorrecct ");

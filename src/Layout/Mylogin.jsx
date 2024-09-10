@@ -17,25 +17,24 @@ const Mylogin = () => {
   }
 
   const loginProcess = async (e) => {
-    // console.log("data fetching....");
-    e.preventDefault()   
+    e.preventDefault();
     try {
       let data = {
         email: input.email,
         password: input.password,
       };
-      console.log(data);
-
-       await axios.post("https://netflixbackend-dysz.onrender.com/admin/login", data)
-     
-      .then((res)=>{
-          console.log(res);
-          return navigate('/home')
-      })
-      .catch((err)=>console.log(err.message))
-      
-    } catch (error) {
-      console.log(error.message);
+      let result = await axios.post(
+        "https://netflixbackend-dysz.onrender.com/admin/login",
+        data
+      );
+      console.log(result);
+      if (result.data.message == "logged In succesfull") {
+        navigate("/home");
+      } else {
+        console.log(result.data.message);
+      }
+    } catch (err) {
+      console.log("incorrecct ");
     }
   };
 
